@@ -54,6 +54,20 @@
 void operatorControl() {
 
 	while (1) {
-		delay(20);
+		// move to main.h eventually for reading and call with a function
+		// read all Joystick and Sensor Values
+		int driveRightJoy = joystickGetAnalog(1,2);
+		int driveLeftJoy = -joystickGetAnalog(1,3);
+
+		motorSet(1,driveRightJoy);
+		motorSet(2,driveRightJoy);
+		motorSet(9,driveLeftJoy);
+		motorSet(10,driveLeftJoy);
+
+
+		//terminal Debug display  -- Can also be moved to main later
+		printf("\n \4d \t \4d \t \r ",driveLeftJoy, driveRightJoy);
+
+		delay(20);//prevent this thread from hogging the CPU, allowing motor, sensor, and UI communications
 	}
 }
